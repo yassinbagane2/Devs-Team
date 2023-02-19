@@ -2,6 +2,7 @@ const express = require("express");
 const colors = require("colors");
 require("dotenv").config();
 const { errorHandler } = require("./middleware/errorMiddleware");
+const cors = require("cors");
 const connectDB = require("./config/db");
 
 const port = process.env.PORT || 5019;
@@ -12,10 +13,8 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-app.get("/", (req, res) => {
-  res.send("jawk bhy!!");
-});
+app.use(cors());
+app.options("*", cors());
 
 // Authentification API
 app.use("/api/auth", require("./routes/authRoutes"));
