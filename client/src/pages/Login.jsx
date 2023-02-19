@@ -25,7 +25,7 @@ const Login = () => {
 
     onSubmit: (values, { resetForm }) => {
       axios
-        .post("http://localhost:5000/api/auth/login", formik.values)
+        .post("http://localhost:5019/api/auth/login", formik.values)
         .then((res) => {
           localStorage.setItem("token", res.data.token);
           navigate("/dashboard");
