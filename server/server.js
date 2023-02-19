@@ -4,7 +4,7 @@ const dotenv = require("dotenv").config();
 const { errorHandler } = require("./middleware/errorMiddleware");
 const connectDB = require("./config/db");
 
-const port = process.env.PORT ||5000;
+const port = process.env.PORT || 5019;
 
 connectDB();
 
@@ -20,8 +20,11 @@ app.get("/" , (req, res) => {
 // Authentification API
 app.use('/api/auth', require('./routes/authRoutes'));
 
+// Services API 
+app.use('/api/services', require('./routes/servicesRoutes'));
+
 app.use(errorHandler);
 
 app.listen(port, () => {
     console.log(`Server running at port ${port} 🚀`);
-})
+})  
